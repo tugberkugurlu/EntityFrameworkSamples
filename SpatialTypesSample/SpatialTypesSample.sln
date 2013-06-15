@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManyToManyEFSample", "ManyToManyEFSample\ManyToManyEFSample.csproj", "{C40B8652-3716-47A4-8272-A463D811B5EB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpatialTypesSample", "SpatialTypesSample\SpatialTypesSample.csproj", "{B2E6213F-4FD7-4F1D-9F9F-B823EF4E1C25}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{39A86B53-3854-4BEA-84B9-2B168A7BC803}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{121A6E29-128D-4065-9B0B-3B1C5EDBD1E2}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
 		.nuget\NuGet.exe = .nuget\NuGet.exe
@@ -16,10 +16,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C40B8652-3716-47A4-8272-A463D811B5EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C40B8652-3716-47A4-8272-A463D811B5EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C40B8652-3716-47A4-8272-A463D811B5EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C40B8652-3716-47A4-8272-A463D811B5EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2E6213F-4FD7-4F1D-9F9F-B823EF4E1C25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2E6213F-4FD7-4F1D-9F9F-B823EF4E1C25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2E6213F-4FD7-4F1D-9F9F-B823EF4E1C25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2E6213F-4FD7-4F1D-9F9F-B823EF4E1C25}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
