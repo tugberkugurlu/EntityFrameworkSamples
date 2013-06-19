@@ -1,11 +1,17 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 
 namespace EFConcurrencyCheckSample.Entities
 {
     public class ConfContext : DbContext
     {
+        public ConfContext()
+        {
+            Database.Log = (msg) => Trace.TraceInformation(msg);
+        }
+
         public IDbSet<Person> People { get; set; }
 
         public override int SaveChanges()

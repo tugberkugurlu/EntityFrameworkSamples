@@ -1,18 +1,13 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 
-namespace EFConcurrencyCheckSample.Entities
+namespace EFConcurrencyCheckSample.Models
 {
-    public class Person : IEntity<int>, IUpdatesTrackable
+    public class PersonDto
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public DateTime BirthDate { get; set; }
         public DateTimeOffset CreatedOn { get; set; }
         public DateTimeOffset LastUpdatedOn { get; set; }
-
-        [Timestamp]
-        [ConcurrencyCheck]
-        public byte[] Timestamp { get; set; }
     }
 }
