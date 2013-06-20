@@ -26,10 +26,7 @@ namespace EFConcurrentAsyncSample.Api.Controllers
 
         public async Task<ConfDto> GetConfDto()
         {
-            List<Owned<ConfContext>> confContexts = Enumerable.Range(1, 3).Select(_ => _confContextFactory()).ToList();
-
-            var foo = object.ReferenceEquals(confContexts[0].Value, confContexts[1].Value);
-
+            Owned<ConfContext>[] confContexts = Enumerable.Range(1, 3).Select(_ => _confContextFactory()).ToArray();
             Task<Person[]> peopleTask = confContexts[0].Value.People.ToArrayAsync();
             Task<Room[]> roomsTask = confContexts[1].Value.Rooms.ToArrayAsync();
             Task<Session[]> sessionsTask = confContexts[2].Value.Sessions.ToArrayAsync();
@@ -38,13 +35,16 @@ namespace EFConcurrentAsyncSample.Api.Controllers
             {
                 await Task.WhenAll(peopleTask, roomsTask, sessionsTask);
             }
-            catch (Exception ex)
+            catch
             {
                 throw;
             }
             finally
             {
-                confContexts.ForEach(ownedCtx => ownedCtx.Dispose());
+                foreach (Owned<ConfContext> ownedCtx in confContexts) 
+                {
+                    ownedCtx.Dispose();
+                }
             }
 
             return new ConfDto
