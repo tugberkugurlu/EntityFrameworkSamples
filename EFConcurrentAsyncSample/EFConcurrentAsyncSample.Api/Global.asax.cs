@@ -3,6 +3,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using Autofac;
+using Autofac.Builder;
+using Autofac.Core;
 using Autofac.Integration.WebApi;
 using EFConcurrentAsyncSample.Api.Models;
 using EFConcurrentAsyncSample.Data.Core;
@@ -30,7 +32,7 @@ namespace EFConcurrentAsyncSample.Api
         private static IContainer RegisterServices(ContainerBuilder builder)
         {
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
-            builder.RegisterType<ConfContext>();
+            builder.RegisterType<ConfContext>().InstancePerApiRequestOrOwned();
 
             return builder.Build();
         }
@@ -42,6 +44,20 @@ namespace EFConcurrentAsyncSample.Api
         {
             ConfContext ctx = (ConfContext)request.GetDependencyScope().GetService(typeof(ConfContext));
             return base.SendAsync(request, cancellationToken);
+        }
+    }
+
+    public static class RegistrationExtensions
+    {
+        public static IRegistrationBuilder<TLimit, TActivatorData, TStyle>
+            InstancePerApiRequestOrOwned<TLimit, TActivatorData, TStyle>(
+                this IRegistrationBuilder<TLimit, TActivatorData, TStyle> registration)
+        {
+            if (registration == null) throw new ArgumentNullException("registration");
+
+            var tags = new object[] {AutofacWebApiDependencyResolver.ApiRequestTag, new TypedService(typeof(TLimit))};
+
+            return registration.InstancePerMatchingLifetimeScope(tags);
         }
     }
 }
