@@ -53,9 +53,16 @@ namespace EFConcurrentAsyncSample.Api
             InstancePerApiRequestOrOwned<TLimit, TActivatorData, TStyle>(
                 this IRegistrationBuilder<TLimit, TActivatorData, TStyle> registration)
         {
-            if (registration == null) throw new ArgumentNullException("registration");
+            if (registration == null)
+            {
+                throw new ArgumentNullException("registration");
+            }
 
-            var tags = new object[] {AutofacWebApiDependencyResolver.ApiRequestTag, new TypedService(typeof(TLimit))};
+            object[] tags = new object[]
+            {
+                AutofacWebApiDependencyResolver.ApiRequestTag, 
+                new TypedService(typeof(TLimit))
+            };
 
             return registration.InstancePerMatchingLifetimeScope(tags);
         }
